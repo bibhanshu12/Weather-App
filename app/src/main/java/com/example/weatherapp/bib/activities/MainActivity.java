@@ -1,6 +1,10 @@
 package com.example.weatherapp.bib.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.SearchView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +22,10 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter hourlyadapter;
-    private RecyclerView recyclerView;
+    public RecyclerView recyclerView;
+    String cities;
+    TextView futurebutton;
+    SearchView searchcity;
     
 
     @Override
@@ -26,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+        futurebutton=findViewById(R.id.future_button);
+        searchcity=findViewById(R.id.searchcity);
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -34,8 +44,20 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+        cities=searchcity.getQuery().toString();
+
         initRecycleView();
 
+
+        futurebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              startActivity(new Intent(MainActivity.this,FutureActivity.class));
+
+
+            }
+        });
 
 
     }
@@ -43,11 +65,11 @@ public class MainActivity extends AppCompatActivity {
     private void initRecycleView() {
         ArrayList<Hourly> items = new ArrayList<>();
 
-        items.add(new Hourly("9 am", 28, "cloudy"));
-        items.add(new Hourly("12 am", 20, "rainy"));
-        items.add(new Hourly("2 am", 30, "wind"));
-        items.add(new Hourly("4 am", 23, "storm"));
-        items.add(new Hourly("6 am", 29, "sun"));
+        items.add(new Hourly("9 am", 28, "suncloud"));
+        items.add(new Hourly("12 am", 20, "windrate"));
+        items.add(new Hourly("2 am", 30, "raining"));
+        items.add(new Hourly("4 am", 23, "humidity"));
+        items.add(new Hourly("6 am", 29, "sunandcloyd"));
 
         // Corrected line: Assign the result of findViewById to recyclerView
         recyclerView = findViewById(R.id.view1);

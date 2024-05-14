@@ -23,13 +23,13 @@ public class HourlyAdapter extends RecyclerView.Adapter<HourlyAdapter.viewHolder
 
     public HourlyAdapter(ArrayList<Hourly> item) {
         this.item = item;
-
     }
 
     @NonNull
     @Override
     public HourlyAdapter.viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View inflate= LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_hourly,parent,false );
+        context= parent.getContext();
 
         return new viewHolder(inflate);
     }
@@ -37,20 +37,16 @@ public class HourlyAdapter extends RecyclerView.Adapter<HourlyAdapter.viewHolder
     @Override
     public void onBindViewHolder(@NonNull HourlyAdapter.viewHolder holder, int position) {
         holder.hourtxt.setText(item.get(position).getHour());
-        holder.temptxt.setText(item.get(position).getPicpath());
+        holder.temptxt.setText(String.valueOf(item.get(position).getTemp()));
 
-        int drawableresourceid = 0;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
-            drawableresourceid = holder.itemView.getResources()
-                    .getIdentifier(item.get(position).getPicpath(),"drawable",holder.itemView.getContext().getOpPackageName());
-        }
+        int drawableresourceid = holder.itemView.getResources()
+                .getIdentifier(item.get(position).getPicpath(), "drawable", holder.itemView.getContext().getPackageName());
 
-        // Check if the context is not null before loading the image
-        if (holder.itemView.getContext() != null) {
-            Glide.with(holder.itemView.getContext())
-                    .load(drawableresourceid)
-                    .into(holder.picpathimg);
-        }
+
+     Glide.with(context)
+             .load(drawableresourceid)
+             .into(holder.picpathimg);
+
     }
 
     @Override
