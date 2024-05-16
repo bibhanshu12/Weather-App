@@ -56,45 +56,6 @@ public class FutureActivity extends AppCompatActivity {
 
 
 
-        //Api responses
-        url="https://jsonplaceholder.typicode.com/todos/1";
-
-        StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onResponse(String response) {
-                try {
-                    // Parse the JSON response
-                    JSONObject jsonObject = new JSONObject(response);
-
-                    // Extract data from the JSON object
-                    int userId = jsonObject.getInt("userId");
-                    int id = jsonObject.getInt("id");
-                    String title = jsonObject.getString("title");
-                    boolean completed = jsonObject.getBoolean("completed");
-
-                    // Display the extracted data
-                    apirespone.setText("userId: " + userId + "\n" +
-                            "id: " + id + "\n" +
-                            "title: " + title + "\n" +
-                            "completed: " + completed);
-                } catch (JSONException e) {
-                    apirespone.setText("Error parsing JSON data");
-                } catch (Exception e) {
-                    apirespone.setText("Error fetching data");
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                Toast.makeText(FutureActivity.this, "Cannot fetch the data", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-
-
 
 
 

@@ -43,6 +43,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.volley)
+    implementation (libs.gson)
     implementation(libs.constraintlayout)
     implementation(libs.glide)
 
