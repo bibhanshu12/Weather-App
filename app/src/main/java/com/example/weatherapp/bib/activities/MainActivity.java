@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Api responses
         urlFirst="https://api.openweathermap.org/data/2.5/weather?q=";
-        urllast="&appid=d95daa281ed9ebd8039495d5b6343512";
+        urllast="&appid=yourApiKey";
 
         url=urlFirst+cities+urllast;
 
@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
     private void hourlyUpdatesCurrentDay(double longitude, double latitude){
 //        apirespone.setText(longitude+"\n"+ latitude);
 
-        String url="https://api.openweathermap.org/data/2.5/forecast?lat="+latitude+"&lon="+longitude+"&appid=d95daa281ed9ebd8039495d5b6343512";
+        String url="https://api.openweathermap.org/data/2.5/forecast?lat="+latitude+"&lon="+longitude+"&appid=yourApiKey";
 
         StringRequest stringRequest=new StringRequest(Request.Method.GET,url, new Response.Listener<String>() {
             @Override
